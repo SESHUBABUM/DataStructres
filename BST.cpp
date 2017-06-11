@@ -16,7 +16,30 @@ public:
     {
         root=nullptr;
     }
-    void insert
+    void insert(int key)
+    {
+        root=_insert(root,key);
+    }
+    struct node* _insert(struct node *root, int key)
+    {
+        if(root==nullptr)
+        {
+            struct node* temp=new node;
+            temp->data=key;
+            temp->left=nullptr;
+            temp->right=nullptr;
+            return temp;
+        }
+        else if( root->data > key)
+        {
+            root->left=_insert(root->left, key);
+        }
+        else if( root->data < key)
+        {
+            root->right=_insert(root->right, key);
+        }
+        return root;
+    }
     int search(int key)
     {
         struct node *temp=root;
