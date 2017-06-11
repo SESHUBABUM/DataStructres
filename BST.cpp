@@ -9,10 +9,32 @@ class BinarySearcgTree
         int data;
         struct node *left;
         struct node *right;
-    }
+    };
     struct node *root;
-    public:
-    
+public:
+    BinarySearcgTree()
+    {
+        root=nullptr;
+    }
+    void insert
+    int search(int key)
+    {
+        struct node *temp=root;
+        while( temp!=nullptr) 
+        {
+            if( root->data==key)
+                return 1;
+            else if(root->data > key )
+            {
+                temp=temp->left;
+            }
+            else
+            {
+                temp=temp->right;
+            }
+        }
+        return 0;
+    }
 };
 int main()
 {
