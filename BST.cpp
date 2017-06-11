@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-class BinarySearcgTree
+class BinarySearchTree
 {
     struct node
     {
@@ -12,7 +12,7 @@ class BinarySearcgTree
     };
     struct node *root;
 public:
-    BinarySearcgTree()
+    BinarySearchTree()
     {
         root=nullptr;
     }
@@ -20,25 +20,37 @@ public:
     {
         root=_insert(root,key);
     }
-    struct node* _insert(struct node *root, int key)
+    void inorder()
     {
-        if(root==nullptr)
+        struct node *temp=root;
+        _inorder(temp);
+    }
+    void _inorder(struct node *temp)
+    {
+        if(temp==nullptr) return;
+        _inorder(temp->left);
+        cout<< temp->data <<endl;
+        _inorder(temp->right);
+    }
+    struct node* _insert(struct node *temp, int key)
+    {
+        if(temp==nullptr)
         {
-            struct node* temp=new node;
-            temp->data=key;
-            temp->left=nullptr;
-            temp->right=nullptr;
-            return temp;
+            struct node* temp1=new struct node;
+            temp1->data=key;
+            temp1->left=nullptr;
+            temp1->right=nullptr;
+            return temp1;
         }
-        else if( root->data > key)
+        else if( temp->data > key)
         {
-            root->left=_insert(root->left, key);
+            temp->left=_insert(temp->left, key);
         }
         else if( root->data < key)
         {
-            root->right=_insert(root->right, key);
+            temp->right=_insert(temp->right, key);
         }
-        return root;
+        return temp;
     }
     int search(int key)
     {
@@ -61,5 +73,13 @@ public:
 };
 int main()
 {
+ BinarySearchTree bst;
+ bst.insert(23);
+ bst.insert(32);
+ bst.insert(2);
+ bst.insert(3);
+ bst.insert(233);
+ cout<< bst.search(233)<<endl;
+ cout<< bst.search(233)<<endl;
  return 0;
 }
